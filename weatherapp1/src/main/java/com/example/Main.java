@@ -26,7 +26,9 @@ public class Main {
             System.out.println("5. Exit");
             System.out.print("Select an option (1-5): ");
             int option = scnner.nextInt();
+
             scnner.nextLine();
+
             switch (option) {
                 // Add to the list
                 case 1:

@@ -30,19 +30,23 @@ public class FavoriteCities {
             CurrentWeather w = weatherList.get(i);
             System.out.println("Index : " + i + " : location : " + w.getLocation());
         }
-
+        System.out.print("Select Option : ");
         int index = scn.nextInt();
         if (weatherList.size() >= 0) {
             weatherList.remove(index);
+            System.out.println("Removed...");
         } else {
             System.out.println("List is empty...");
         }
-        scn.close();
     }
 
     public void displayWeatherData() {
         System.out.println("Listing options to display...");
         Scanner scn = new Scanner(System.in);
+        if (weatherList.size() == 0) {
+            System.out.println("List empty...");
+            return;
+        }
         for (int i = 0; i < weatherList.size(); i++) {
             CurrentWeather w = weatherList.get(i);
             System.out.println("Index : " + i + " : location : " + w.getLocation());
@@ -61,7 +65,7 @@ public class FavoriteCities {
         System.out.println("Atmospheric Pressure : " + choosenCity.getPressure());
         System.out.println("Humidity : " + choosenCity.getHumidity());
         System.out.println("Visibility : " + choosenCity.getVisibility());
-        System.out.println("Wind Speed : " + choosenCity.getWindSpeed());
+        System.out.println("Wind Speed : " + choosenCity.getWindSpeed() + "/mph");
         System.out.println("Wind Direction (Degrees) : " + choosenCity.getWindDir());
 
     }

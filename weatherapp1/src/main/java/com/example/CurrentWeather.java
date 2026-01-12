@@ -1,5 +1,6 @@
 package com.example;
 
+import java.util.*;
 import java.util.Date;
 
 public class CurrentWeather {
@@ -58,11 +59,12 @@ public class CurrentWeather {
     }
 
     public Double convertTemp(double t) {
-        double absolute = 273.15;
-        double adjustment = (5 / 9);
+        double absolute = t - 273.15;
+        double adjustment = (5.0 / 9.0) * absolute;
         double fahrenheitConst = 32.00;
-        double temp = (t - absolute) * adjustment + fahrenheitConst;
-        return temp;
+        double temp = adjustment + fahrenheitConst;
+        double tt = Math.round(temp * 100) / 100;
+        return tt;
     }
 
     public Double getTempMax() {
@@ -94,7 +96,7 @@ public class CurrentWeather {
     }
 
     public double getFeelsLike() {
-        return feelsLike;
+        return convertTemp(feelsLike);
     }
 
     public Long getPressure() {
