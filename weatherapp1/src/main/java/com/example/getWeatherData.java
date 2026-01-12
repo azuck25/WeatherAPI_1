@@ -15,10 +15,15 @@ public class getWeatherData {
     public static Coordinates returnCoords(String cityName, String stateCode, String countryCode) {
 
         Coordinates coords = new Coordinates(cityName, 0, 0);
+        // Here we grab the geo-coded lattitude and longitude of the City so we can pass
+        // the lon/lat into the next function
+        // to return the current weather
         try {
+            // We must encode the cityName to accomidate for whitespace
             String cityNameUrlEncoded = URLEncoder.encode(cityName, StandardCharsets.UTF_8.toString());
             String url = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityNameUrlEncoded + "," + stateCode + ","
                     + countryCode + "&limit=1&appid=" + APIKey1;
+            // Using the URL lib we connect to the API to capture its returned JSON data
             URL openWeather = new URI(url).toURL();
             HttpURLConnection conn = (HttpURLConnection) openWeather.openConnection();
             conn.setRequestMethod("GET");
@@ -29,13 +34,15 @@ public class getWeatherData {
             } else {
                 String inline = "";
                 Scanner scansJsonOutput = new Scanner(openWeather.openStream());
-
+                // We open a input stream from the URL/scan/parse the data line by line storing
+                // it as text data in JSON format
                 while (scansJsonOutput.hasNext()) {
                     inline += scansJsonOutput.nextLine();
                     // System.out.println(inline);
                 }
                 scansJsonOutput.close();
-
+                // JSON parser then takes the text data in json format and parses it into a
+                // JSONObj for us to select lon/lat coords
                 JSONParser parse = new JSONParser();
                 JSONArray d_obj = (JSONArray) parse.parse(inline);
                 // since the parser returns an array object we must select an index within the
@@ -90,7 +97,9 @@ public class getWeatherData {
                 JSONObject sys_obj = (JSONObject) d_obj.get("sys");
                 JSONArray weather_obj = (JSONArray) d_obj.get("weather");
                 JSONObject weather_obj2 = (JSONObject) weather_obj.get(0);
-
+                // After parsing the JSON text data we select the current weather headers to
+                // store them into
+                // the CurrentWeather datastructure
                 double temp_obj = (double) main_obj.get("temp");
                 double feelsLike = (double) main_obj.get("feels_like");
                 double tempMin = (double) main_obj.get("temp_min");
@@ -129,7 +138,7 @@ public class getWeatherData {
     }
 
     static class Coordinates {
-
+        // We create a simple datastructure to store the coordinates and cityname
         String cityName;
         double lat;
         double lon;

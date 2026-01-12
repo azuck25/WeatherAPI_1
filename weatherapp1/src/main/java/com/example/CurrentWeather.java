@@ -3,6 +3,8 @@ package com.example;
 import java.util.*;
 import java.util.Date;
 
+//Here we create a datastructure with custom field to define what current weather data is in our case
+//An interface is created to interact with the structure.
 public class CurrentWeather {
     private String location;
     private Date currDate;
@@ -58,6 +60,8 @@ public class CurrentWeather {
         return currDate;
     }
 
+    // To convert our temp in to common formats we use the Kalvin to F conversions
+    // formula
     public Double convertTemp(double t) {
         double absolute = t - 273.15;
         double adjustment = (5.0 / 9.0) * absolute;
