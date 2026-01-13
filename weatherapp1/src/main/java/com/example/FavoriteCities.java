@@ -16,13 +16,17 @@ public class FavoriteCities {
     public void addWeatherData(CurrentWeather weatherData) {
         if (weatherList.size() != listLimit) {
             weatherList.add(weatherData);
-            System.out.println("added" + " size " + weatherList.size());
+            System.out.println("Added " + weatherData.getLocation() + " to favorites.");
+            System.out.println("Current size of favorites list : " + weatherList.size());
         } else {
             System.out.println("Exceeds favorite list size.");
         }
     }
 
     public void removeWeatherData() {
+        if (weatherList.size() == 0) {
+            return;
+        }
         System.out.println("Choose index to remove.");
         System.out.println("Listing options...");
         Scanner scn = new Scanner(System.in);
@@ -51,8 +55,10 @@ public class FavoriteCities {
             CurrentWeather w = weatherList.get(i);
             System.out.println("Index : " + i + " : location : " + w.getLocation());
         }
+        System.out.println();
         System.out.print("Select index to display : ");
         int index = scn.nextInt();
+        System.out.println();
         // scn.close();
         CurrentWeather choosenCity = weatherList.get(index);
         System.out.println("Current Weather Conditions");

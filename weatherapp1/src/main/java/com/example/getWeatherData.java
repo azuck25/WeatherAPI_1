@@ -60,6 +60,7 @@ public class getWeatherData {
 
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
+
         }
 
         return coords;
@@ -104,7 +105,14 @@ public class getWeatherData {
                 double feelsLike = (double) main_obj.get("feels_like");
                 double tempMin = (double) main_obj.get("temp_min");
                 double tempMax = (double) main_obj.get("temp_max");
-                double windSpeed = (double) wind_obj.get("speed");
+                double windSpeed;
+                try {
+                    windSpeed = (double) wind_obj.get("speed");
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    windSpeed = 0.0;
+                }
+
                 Long windDir = (Long) wind_obj.get("deg");
                 Long currTime = (Long) d_obj.get("dt");
                 // System.out.println(main_obj);
@@ -131,8 +139,8 @@ public class getWeatherData {
             System.out.println("Error: " + e.getMessage());
         }
 
-        CurrentWeather nullObj = new CurrentWeather(null, null, null, null, 0, 0, 0, 0, null, null, urlWeatherCall,
-                null, lon, null);
+        CurrentWeather nullObj = new CurrentWeather(cityName, null, null, null, 0, 0, 0, 0, null, null, urlWeatherCall,
+                null, null, null);
 
         return nullObj;
     }

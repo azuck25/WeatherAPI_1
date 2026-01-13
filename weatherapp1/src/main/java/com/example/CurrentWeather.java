@@ -63,10 +63,8 @@ public class CurrentWeather {
     // To convert our temp in to common formats we use the Kalvin to F conversions
     // formula
     public Double convertTemp(double t) {
-        double absolute = t - 273.15;
-        double adjustment = (5.0 / 9.0) * absolute;
-        double fahrenheitConst = 32.00;
-        double temp = adjustment + fahrenheitConst;
+        double temp = (t - 273.15) * (9.00 / 5.00) + 32.00;
+        // double temp = (9 / 5) * absolute + 32.00;
         double tt = Math.round(temp * 100) / 100;
         return tt;
     }
