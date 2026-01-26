@@ -3,7 +3,7 @@ To test the weatherAPI you will need to clone the repository with Git and then b
 The project is a proof of concept of a simple command line weatherAPI application to stream weather data on cities across the world.  
 PS C:\Users\zuck1\WeatherAPI\WeatherAPI_1\weatherapp1> mvn compile exec:java "-Dexec.mainClass=com.example.Main"  
 
-'''
+```
 PS C:\Users\zuck1\WeatherAPI\WeatherAPI_1\weatherapp1> mvn compile exec:java "-Dexec.mainClass=com.example.Main"
 [INFO] Scanning for projects...
 [INFO] Building weatherapp1 1.0-SNAPSHOT
@@ -85,5 +85,4 @@ Wind Direction (Degrees) : 182
 4. Display weather for any city
 5. Exit
 Select an option (1-5):
-'''
-
+```
